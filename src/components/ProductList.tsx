@@ -1,7 +1,11 @@
 import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
-import React from 'react'
+import React from "react"
 
-const ProductList = ({products}) => {
+interface Props {
+   products: any[]
+}
+
+const ProductList:React.FC<Props> = ({products}) => {
    return (
       <ImageList 
          cols={5}
