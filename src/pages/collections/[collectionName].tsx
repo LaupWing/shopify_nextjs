@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Box} from "@mui/material"
 import Navigation from "../../components/Navigation"
-import BreadcrumbsNavigation from "../../components/Breadcrumbs"
+import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation"
 import { useRouter } from "next/router"
 
 const CollectionPage = () => {
