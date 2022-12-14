@@ -1,4 +1,4 @@
-import { ImageList, ImageListItem } from "@mui/material"
+import { ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
 import React from 'react'
 
 const ProductList = ({products}) => {
@@ -14,6 +14,11 @@ const ProductList = ({products}) => {
                   srcSet={`${product.image}?w=250&fit=crop&auto=format&dpr=2 2x`}
                   alt={product.name}
                   loading="lazy"
+               />
+               <ImageListItemBar
+                  title={product.name}
+                  subtitle={<span>Price: {product.price}</span>}
+                  position="below"
                />
             </ImageListItem>
          ))}
