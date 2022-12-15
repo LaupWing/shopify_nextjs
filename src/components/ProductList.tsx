@@ -6,6 +6,31 @@ interface Props {
    products: any[]
 }
 
+const Product = ({product, goToProductPage}:any) => {
+   const {id, title, images, variants, handle} = product
+   const {src: productImage} = images[0]
+   const {price} = variants[0]
+
+   return (
+      <ImageListItem
+         style={{cursor: "pointer"}}        
+         onClick={() => goToProductPage(handle)}
+      >
+         <img 
+            src={`${productImage}?w=250&fit=crop&auto=format`} 
+            srcSet={`${productImage}?w=250&fit=crop&auto=format&dpr=2 2x`}
+            alt={title}
+            loading="lazy"
+         />
+         <ImageListItemBar
+            title={title}
+            subtitle={<span>Price: {price}</span>}
+            position="below"
+         />
+      </ImageListItem>
+   )
+ }
+
 const ProductList:React.FC<Props> = ({products}) => {
    const router = useRouter()
    const goToProductPage = (productHandle: string) => router.push(`/products/${productHandle}`)
@@ -16,23 +41,11 @@ const ProductList:React.FC<Props> = ({products}) => {
          gap={20}
       >
          {products.map(product =>(
-            <ImageListItem 
-               key={product.image}
-               style={{cursor: "pointer"}}
-               onClick={() => goToProductPage(product.handle)}
-            >
-               <img 
-                  src={`${product.image}?w=250&fit=crop&auto=format`} 
-                  srcSet={`${product.image}?w=250&fit=crop&auto=format&dpr=2 2x`}
-                  alt={product.name}
-                  loading="lazy"
-               />
-               <ImageListItemBar
-                  title={product.name}
-                  subtitle={<span>Price: {product.price}</span>}
-                  position="below"
-               />
-            </ImageListItem>
+            <Product 
+               key={product.handle}
+               product={product}
+               goToProductPage={goToProductPage}
+            />
          ))}
       </ImageList>
    )
